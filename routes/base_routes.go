@@ -10,8 +10,9 @@ import (
 var Config *configs.SiteConfig = configs.Get("config.yaml")
 
 type BaseData struct {
-	Title   string
-	content string
+	Page  string
+	Title string
+	Body  string
 }
 
 func BaseRoutes(e *echo.Echo) {
@@ -21,7 +22,7 @@ func BaseRoutes(e *echo.Echo) {
 }
 
 func home(c *echo.Context) error {
-	d := BaseData{Title: Config.Name, content: "This is purely an experiment"}
+	d := BaseData{Page: "index", Title: Config.Name, Body: "This is purely an experiment"}
 	return c.Render(http.StatusOK, "base", d)
 }
 

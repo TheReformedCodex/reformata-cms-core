@@ -1,0 +1,28 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/style/card-component.css" type="text/css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.4/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.15.4/dist/cdn.min.js"></script>
+</head>
+<body>
+
+    {{ template "components/nav-banner" .}}
+
+    {{ if eq "index" .Page }}
+
+      {{ template "index"}}
+      
+    {{ end }}
+
+    <!-- {{ block "body" . }}
+
+    {{ end }} -->
+
+</body>
+</html>
+{{ end }}
