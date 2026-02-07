@@ -1,9 +1,29 @@
-pub mod app;
+pub mod routes;
+pub mod templates;
+pub mod state;
 
-#[cfg(feature = "hydrate")]
-#[wasm_bindgen::prelude::wasm_bindgen]
-pub fn hydrate() {
-    use crate::app::*;
-    console_error_panic_hook::set_once();
-    leptos::mount::hydrate_body(App);
+use axum::Router;
+use tera::Tera;
+use lazy_static::lazy_static;
+
+use crate::state::AppState;
+
+
+lazy_static! {
+        pub static ref TEMPLATES: Tera = {
+            let mut tera = match Tera::new("html/**/*.html") {
+                Ok(t) => t,
+                Err(e) => {
+                    println!("Parsing errors: {}", e);
+                    ::std::process::exit(1);
+                }
+            };
+            tera.autoescape_on(vec![".html", ".sql"]);
+            // tera.register_filter("do_nothing", do_nothing_filter);
+            tera
+        };
+}
+
+pub fn app() -> Router<AppState>{
+    Router::new().merge(routes::router())
 }
