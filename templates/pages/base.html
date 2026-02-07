@@ -1,28 +1,63 @@
 {{ define "base" }}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ .Title }}</title>
-  <link rel="stylesheet" href="/static/style/card-component.css" type="text/css">
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.4/dist/cdn.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.15.4/dist/cdn.min.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/static/imgs/branding/favicon.ico" />
+    <link rel="stylesheet" href="/static/style/reformata-cms-core.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{if .Title }} {{ .Title }} {{else}}Arbor Heights Bible Church{{end}}</title>
 
-    {{ template "components/nav-banner" .}}
+    <meta property="og:title" content="Arbor Heights Bible Church">
+    <meta property="og:description" content="Arbor Heights Baptist Church is a Reformed Baptist Church in Douglasville, Georgia.  AHBC fully agrees with the 2nd London Baptist Confession of 1689 and the Philadelphia Baptist Confession of 1742.">
+    <meta property="og:image" content="/static/imgs/header.jpg">
+    <meta property="og:image" content="/static/imgs/church2.jpg">
+    <meta property="og:url" content="http://www.arborheightsbible.com/">
 
-    {{ if eq "index" .Page }}
+    <meta name="description" content="Arbor Heights Baptist Church is a Reformed Baptist Church in Douglasville, Georgia.  AHBC fully agrees with the 2nd London Baptist Confession of 1689 and the Philadelphia Baptist Confession of 1742.">
+    <meta name="keywords" content="reformed, Baptist church, douglasville, georgia, calvinist, expository preaching, doctrines of grace, election, 5 points of Calvinism, atlanta, church, reformed church">
 
-      {{ template "index"}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="/static/scripts/feather.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Church",
+      "name": "Arbor Heights Bible Church",
+      "alternateName": "Arbor Heights Bible Church",
+      "url": "https://arborheightsbible.thereformedcodex.com/",
+      "logo": "https://arborheightsbible.thereformedcodex.com/static/imgs/Favicon48×48px.png",
+      "description": "Arbor Heights Baptist Church is a Reformed Baptist Church in Douglasville, Georgia.  AHBC fully agrees with the 2nd London Baptist Confession of 1689 and the Philadelphia Baptist Confession of 1742.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3506 Reynolds Rd.", 
+        "addressLocality": "Douglasville",
+        "addressRegion": "GA",
+        "postalCode": "30135",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "arborheightsbible@gmail.com"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-(--light-surface-tonal-a10)" x-data="{ atTop: true }" id="main-content" class="" x-ref="topOfPage">
+
+
+  {{ template "components/nav-banner" .}}
+
+    {{ if eq "home" .Page }}
+
+      {{ template "home"}}
       
     {{ end }}
 
-    <!-- {{ block "body" . }}
+  {{ template "components/footer"}}
 
-    {{ end }} -->
-
-</body>
-</html>
+  <script>feather.replace()</script>
+  </body>
 {{ end }}

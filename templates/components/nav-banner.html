@@ -1,5 +1,66 @@
 {{ define "components/nav-banner" }}
-    <section class="nav-banner">
-        Hello
-    </section>
+<nav 
+    class="sticky top-0 left-0 right-0 font-lg border-b-2 transition duration-800 ease-in-out w-full z-[60]"
+    
+    :class="{ 
+        'shadow-lg': !atTop, 
+        'bg-(--light-primary-a40) text-(--light-surface-a40)': !atTop, 
+        'bg-(--light-surface-tonal-a10) text-(--light-primary-a70)': atTop,
+        'h-25': atTop,
+        'h-15': !atTop,
+    }" 
+    @scroll.window.throttle.150ms="atTop = (window.pageYOffset < 100) ? true: false"
+    >
+    <ul class="flex font-semibold max-w-(--content-width-max) mx-auto h-full">
+        <li @click="$refs.topOfPage.scrollIntoView({behavior: 'smooth'})" class="mr-auto flex cursor-pointer my-auto">
+            <img 
+            :src="atTop ? '/static/imgs/branding/arbor_heights_logo_black.svg' : '/static/imgs/branding/arbor_heights_logo_white.svg'"
+            alt="Arbor Height Bible Church Logo of a Cros with a ring around setting behind two hills"
+            class="mr-3"
+            :class="atTop ? 'h-21' : 'h-11'"
+            />
+            <div id="nav-header-brand-text" class="pl-2" :class="atTop && 'border-l-2'" >              
+            <template x-if="atTop">
+                <div>
+                <span class="text-4xl gelasio">Arbor Heights</span><br/>
+                <span class="text-4xl font-light">Bible Church</span>
+                </div>
+            </template>
+            <template x-if="!atTop">
+                <span class="text-4xl font-extralight">AHBC</span>
+            </template>
+            </div>
+        </li>
+        <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
+            :class="{ 
+                'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
+                'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
+            }"><a href="#">Home</a></li>
+        <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
+            :class="{ 
+                'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
+                'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
+            }"><a href="#">Beliefs</a></li>
+        <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
+            :class="{ 
+                'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
+                'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
+            }"><a href="#">About us</a></li>
+        <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
+            :class="{ 
+                'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
+                'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
+            }"><a href="#">Sermons</a></li>
+        <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out" 
+            :class="{ 
+                'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
+                'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
+            }"><a href="#">Members</a></li>
+        <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
+            :class="{ 
+                'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
+                'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
+            }"><a href="#">Contact</a></li>
+    </ul>
+    </nav>
 {{ end }}

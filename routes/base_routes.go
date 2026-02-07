@@ -22,7 +22,7 @@ func BaseRoutes(e *echo.Echo) {
 }
 
 func home(c *echo.Context) error {
-	d := BaseData{Page: "index", Title: Config.Name, Body: "This is purely an experiment"}
+	d := BaseData{Page: "home", Title: Config.Name, Body: "This is purely an experiment"}
 	return c.Render(http.StatusOK, "base", d)
 }
 
