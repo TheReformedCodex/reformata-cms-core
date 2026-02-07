@@ -1,11 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io"
 	"reformata-cms-core/configs"
 	"reformata-cms-core/routes"
-	"fmt"
+
 	"github.com/labstack/echo/v5"
 	"github.com/labstack/echo/v5/middleware"
 )
@@ -24,14 +25,16 @@ func main() {
 	println("Starting Site For: ", site_config.Name)
 
 	e := echo.New()
+	e.Static("/static", "static")
 	e.Use(middleware.RequestLogger())
+
 	e.Renderer = &TemplateRenderer{
-		templates: template.Must(template.ParseGlob("templates/*.html")),
+		templates: template.Must(template.ParseGlob("templates/**/*.html")),
 	}
 
 	routes.BaseRoutes(e)
 
-	if err := e.Start(fmt.Sprintf(":%v",site_config.Server.Port)); err != nil {
+	if err := e.Start(fmt.Sprintf(":%v", site_config.Server.Port)); err != nil {
 		e.Logger.Error("Failed to start server", "error", err)
 	}
 }

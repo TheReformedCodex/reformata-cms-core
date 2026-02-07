@@ -1,6 +1,6 @@
 # Configuration for Reformata-CMS-Core Deployment
 
-name: "Batista Reformada Coram Deo"
+name: "Arbor Heights Bible Church"
 
 server:
   host: 127.0.0.1

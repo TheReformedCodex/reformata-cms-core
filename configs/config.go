@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
-
 	"sigs.k8s.io/yaml"
 )
 
