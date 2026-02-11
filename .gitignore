@@ -33,3 +33,8 @@ go.work.sum
 
 /node_modules
 /target
+.secrets.env
+tmp/main
+tmp/build-errors.log
+tmp/*
+tmp/
