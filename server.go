@@ -20,9 +20,9 @@ func (t *TemplateRenderer) Render(c *echo.Context, w io.Writer, name string, dat
 }
 
 func main() {
-	site_config := configs.Get("config.yaml")
+	site_config := configs.GetConfig("config.yaml")
 
-	println("Starting Site For: ", site_config.Name)
+	println("Starting Site For: ", site_config.ConfigFile.Name)
 
 	e := echo.New()
 	e.Static("/static", "static")
@@ -34,7 +34,7 @@ func main() {
 
 	routes.BaseRoutes(e)
 
-	if err := e.Start(fmt.Sprintf(":%v", site_config.Server.Port)); err != nil {
+	if err := e.Start(fmt.Sprintf(":%v", site_config.ConfigFile.Server.Port)); err != nil {
 		e.Logger.Error("Failed to start server", "error", err)
 	}
 }

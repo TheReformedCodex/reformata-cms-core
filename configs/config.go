@@ -5,21 +5,36 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
+
+	"github.com/lpernett/godotenv"
 	"sigs.k8s.io/yaml"
 )
 
-type SiteConfig struct {
+type SiteConfigFile struct {
 	Name   string `yaml:"name"`
 	Server struct {
 		host string
 		Port int
 	} `yaml:"server"`
+	YouTubeApiUrl    string `yaml:"youtubeapiurl"`
+	YouTubeChannelId string `yaml:"youtubechannelid"`
+}
+
+type SiteSecrets struct {
+	YouTubeAPIKey string
+}
+
+type SiteConfig struct {
+	ConfigFile SiteConfigFile
+	Secrets    SiteSecrets
 }
 
 var once sync.Once
-var cfg *SiteConfig
+var cfg *SiteConfigFile
+var secrets *SiteSecrets
+var config *SiteConfig
 
-func LoadConfig(p string) error {
+func LoadConfigFile(p string) error {
 	// var in_scope_cfg *SiteConfig
 	current_dir, err := os.Getwd()
 	if err != nil {
@@ -45,11 +60,29 @@ func LoadConfig(p string) error {
 	return nil
 }
 
+func LoadSecrets() error {
 
-func Get(filename string) *SiteConfig {
-	once.Do(func() { LoadConfig(filename) })
-	if cfg == nil {
+	if err := godotenv.Load(".secrets.env"); err != nil {
+		log.Fatal("Error Loading Secrets")
+	}
+
+	secrets = &SiteSecrets{YouTubeAPIKey: os.Getenv("YOUTUBE_API")}
+
+	return nil
+}
+
+func GetConfig(filename string) *SiteConfig {
+	once.Do(func() {
+		LoadConfigFile(filename)
+		LoadSecrets()
+	})
+
+	if cfg == nil || secrets == nil {
 		log.Fatal("Config not loaded")
 	}
-	return cfg
+
+	config = &SiteConfig{ConfigFile: *cfg, Secrets: *secrets}
+	return config
 }
+
+var Config *SiteConfig = GetConfig("config.yaml")

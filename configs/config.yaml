@@ -9,3 +9,7 @@ server:
   #   server: 30
   #   read: 15
   #   write: 15
+
+youtubeapiurl: "https://www.googleapis.com/youtube/v3/search"
+url: "https://www.googleapis.com/youtube/v3/search"
+youtubechannelid: UCKU147XoMX2tdXt2dmUDX0g
