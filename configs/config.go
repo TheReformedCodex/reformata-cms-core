@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/lpernett/godotenv"
+	// "github.com/lpernett/godotenv"
 	"sigs.k8s.io/yaml"
 )
 
@@ -62,9 +62,9 @@ func LoadConfigFile(p string) error {
 
 func LoadSecrets() error {
 
-	if err := godotenv.Load(".secrets.env"); err != nil {
-		log.Fatal("Error Loading Secrets")
-	}
+	// if err := godotenv.Load(".secrets.env"); err != nil {
+	// 	log.Fatal("Error Loading Secrets")
+	// }
 
 	secrets = &SiteSecrets{YouTubeAPIKey: os.Getenv("YOUTUBE_API")}
 
