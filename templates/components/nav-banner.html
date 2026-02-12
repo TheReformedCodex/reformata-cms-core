@@ -35,32 +35,56 @@
             :class="{ 
                 'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
                 'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
-            }"><a href="#">Home</a></li>
+            }">
+            <a 
+                href="/"
+                hx-get="/"
+                hx-target="#content"
+                hx-push-url="true"
+            >Home</a>
+        </li>
         <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
             :class="{ 
                 'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
                 'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
-            }"><a href="#">Beliefs</a></li>
+            }">
+            <a href="#">Beliefs</a>
+        </li>
         <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
             :class="{ 
                 'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
                 'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
-            }"><a href="#">About us</a></li>
+            }">
+            <a 
+                href="/about"
+                hx-get="/about"
+                hx-target="#content"
+                hx-push-url="true"
+                >
+                About us
+            </a>
+        </li>
         <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
             :class="{ 
                 'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
                 'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
-            }"><a href="#">Sermons</a></li>
+            }">
+            <a href="#">Sermons</a>
+        </li>
         <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out" 
             :class="{ 
                 'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
                 'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
-            }"><a href="#">Members</a></li>
+            }">
+            <a href="#">Members</a>
+        </li>
         <li class="mx-1 gelasio font-bold mt-auto text-2xl px-4 py-2 transition duration-300 ease-in-out"
             :class="{ 
                 'hover:bg-(--light-primary-a40) hover:text-(--light-surface-a40)' : atTop, 
                 'hover:bg-(--light-surface-tonal-a10) hover:text-(--light-primary-a70)': !atTop,
-            }"><a href="#">Contact</a></li>
+            }">
+            <a href="#">Contact</a>
+        </li>
     </ul>
     </nav>
 {{ end }}

@@ -17,6 +17,7 @@
     <meta name="description" content="Arbor Heights Baptist Church is a Reformed Baptist Church in Douglasville, Georgia.  AHBC fully agrees with the 2nd London Baptist Confession of 1689 and the Philadelphia Baptist Confession of 1742.">
     <meta name="keywords" content="reformed, Baptist church, douglasville, georgia, calvinist, expository preaching, doctrines of grace, election, 5 points of Calvinism, atlanta, church, reformed church">
 
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="/static/scripts/feather.min.js"></script>
 
@@ -49,15 +50,17 @@
 
 
   {{ template "components/nav-banner" .}}
-
+  <div 
+      id="content"
+      className="h-screen w-full flex items-center justify-center overflow-hidden"
+    >
     {{ if eq "home" .Page }}
-
       {{ template "home" .}}
-      
+    {{ else if "about" }}
+      {{ template "about"}}
     {{ end }}
-
+  </div>
   {{ template "components/footer"}}
-
   <script>feather.replace()</script>
   </body>
 {{ end }}
